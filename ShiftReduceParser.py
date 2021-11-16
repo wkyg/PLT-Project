@@ -42,7 +42,7 @@ class Parser:
                 self.stack.pop()
                 self.stack.append("<Duck_Curious>")
 
-            elif(self.stackString == '<Dog_Curious>quack'):
+            elif(self.stackString == '<Duck_Curious>quack'):
                 self.stack.pop()
                 self.stack.append("<Duck_Happy>")
                 
