@@ -6,11 +6,11 @@
 # {quack,honk}
 
 # Production Rules: 
-# <Duck_Quack>  -> quack
-# <Duck_Honk>   -> honk
-# <Duck_Curious>   -> <Duck_Quack> <Duck_Honk> example: quack honk
-# <Duck_Happy>	-> <Duck_Curious> <Dog_Quack> quack honk quack
-# <Duck_Angry>   -> <Duck_Honk> <Duck_Honk> honk honk
+# <Duck_Quack>      -> quack
+# <Duck_Honk>       -> honk
+# <Duck_Curious>    -> <Duck_Quack> <Duck_Honk> example: quack honk
+# <Duck_Happy>	    -> <Duck_Curious> <Dog_Quack> quack honk quack
+# <Duck_Angry>      -> <Duck_Honk> <Duck_Honk> honk honk
 
 
 import sys
