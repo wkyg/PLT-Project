@@ -1,16 +1,16 @@
 # Start Symbol:
-# <Dog_Talk>
-# <Dog_Sad> 
+# <Duck_Quack>
+# <Duck_Honk>
 
 # Terminal Symbol:
-# {u,woof}
+# {quack,honk}
 
 # Production Rules: 
-# <Dog_Talk>    -> woof
-# <Dog_Sad> 	-> u
-# <Dog_Scare>   -> <Dog_Talk> <Dog_Sad> woof u
-# <Dog_Happy>	-> <Dog_Scare> <Dog_Talk> woof u woof
-# <Dog_Angry>   -> <Dog_Talk> <Dog_Talk> woof woof
+# <Duck_Quack>  -> quack
+# <Duck_Honk>   -> honk
+# <Duck_Curious>   -> <Duck_Quack> <Duck_Honk> example: quack honk
+# <Duck_Happy>	-> <Duck_Curious> <Dog_Quack> quack honk quack
+# <Duck_Angry>   -> <Duck_Honk> <Duck_Honk> honk honk
 
 
 import sys
@@ -32,43 +32,43 @@ class Parser:
             self.stack.pop()
             #print("\n")
             #print("stackstring",self.stackString)
-            if(self.stackString == 'woof'):
-                self.stack.append("<Dog_Talk>")
+            if(self.stackString == 'quack'):
+                self.stack.append("<Duck_Quack>")
 
-            elif(self.stackString == 'u'):
-                self.stack.append("<Dog_Sad>")
+            elif(self.stackString == 'honk'):
+                self.stack.append("<Duck_Honk>")
 
-            elif(self.stackString == '<Dog_Talk>u'):
+            elif(self.stackString == '<Duck_Quack>honk'):
                 self.stack.pop()
-                self.stack.append("<Dog_Scare>")
+                self.stack.append("<Duck_Curious>")
 
-            elif(self.stackString == '<Dog_Scare>woof'):
+            elif(self.stackString == '<Dog_Curious>quack'):
                 self.stack.pop()
-                self.stack.append("<Dog_Happy>")
+                self.stack.append("<Duck_Happy>")
                 
-            elif(self.stackString == '<Dog_Talk>woof'):
+            elif(self.stackString == '<Duck_Honk>honk'):
                 self.stack.pop()
-                self.stack.append("<Dog_Angry>")            
+                self.stack.append("<Duck_Angry>")
             else :
                 print("Reject")
-                print("Syntax Analysis complete. The dog is confuse")
+                print("Syntax Analysis complete. The duck does not understand anything u just said")
                 quit()
                 self.stack.clear()
                 
         self.stackString = ""
         for i in range(len(self.stack)):
             self.stackString = self.stackString + self.stack[i]
-        print("$" + self.stackString + "\t" + self.a + "$" + "\t", end='')
+        print("$" + self.stackString + "\t\t\t" + self.a + "$" + "\t\t\t", end='')
         # print("\n")
         # print("stack",self.stack)
 
     def number(self):
             self.stacklength = len(self.stack)
-            if self.stack[self.stacklength - 1] == "woof":
-                print(self.ac + "<Dog_Talk>")
+            if self.stack[self.stacklength - 1] == "quack":
+                print(self.ac + "<Duck_Quack>")
                 self.popandstuff(1)
-            elif self.stack[self.stacklength - 1] == "u" : 
-                print(self.ac + "<Dog_Sad>")
+            elif self.stack[self.stacklength - 1] == "honk":
+                print(self.ac + "<Duck_Honk>")
                 self.popandstuff(1)            
             
     def twopart(self, first, last):
@@ -93,32 +93,30 @@ class Parser:
 
     def checkrules(self):
         self.number()
-        self.twopart("<Dog_Talk>","<Dog_Sad>")
-        self.twopart("<Dog_Scare>","<Dog_Talk>")        
-        # self.twopart("<Dog_Talk>","<Dog_Scare>")
-        # self.twopart("woof","woof")
+        self.twopart("<Duck_Quack>","<Duck_Honk>")
+        self.twopart("<Duck_Honk>","<Duck_Quack>")
 
     def checkvalid(self):
         self.stacklength = len(self.stack)
-        if (self.stacklength == 1 and self.stack[self.stacklength - 1] == "<Dog_Talk>"):
+        if (self.stacklength == 1 and self.stack[self.stacklength - 1] == "<Duck_Quack>"):
             print("Accept")
-            print("Syntax Analysis complete. The dog is talking.")
-        elif (self.stacklength == 1 and self.stack[self.stacklength - 1] == "<Dog_Sad>"):
+            print("Syntax Analysis complete. The duck is quacking.")
+        elif (self.stacklength == 1 and self.stack[self.stacklength - 1] == "<Duck_Honk>"):
             print("Accept")
-            print("Syntax Analysis complete. The dog is sad.")
-        elif (self.stack[self.stacklength - 1] == "<Dog_Scare>"):
+            print("Syntax Analysis complete. The duck is honking.")
+        elif (self.stack[self.stacklength - 1] == "<Duck_Curious>"):
             print("Accept")
-            print("Syntax Analysis complete. The dog is scare.")
-        elif (self.stack[self.stacklength - 1] == "<Dog_Happy>"):
+            print("Syntax Analysis complete. The duck is curious.")
+        elif (self.stack[self.stacklength - 1] == "<Duck_Happy>"):
             print("Accept")
-            print("Syntax Analysis complete. The dog is happy.")
-        elif (self.stack[self.stacklength - 1] == "<Dog_Angry>"):
+            print("Syntax Analysis complete. The duck is happy.")
+        elif (self.stack[self.stacklength - 1] == "<Duck_Angry>"):
             print("Accept")
-            print("Syntax Analysis complete. The dog is angry.")        
+            print("Syntax Analysis complete. The duck is angry.")
         else:
             print("ending",self.stack[self.stacklength - 1])
             print("Reject")
-            print("Syntax Analysis complete. The dog is confuse")
+            print("Syntax Analysis complete. The duck does not understand anything u just said")
             sys.exit()
 
     def maincheck(self):
@@ -146,15 +144,15 @@ class Parser:
                 self.a = self.a + self.text[i + self.inputElement][0]
 
             # Print stack and input
-            print("$" + self.stackString + "\t" + self.a + "$" + "\t", end='')
+            print("$" + self.stackString + "\t\t\t" + self.a + "$" + "\t\t\t", end='')
 
             self.checkrules()
 
     def parser(self):
         for x in range(len(self.text) - self.inputElement):
             self.a = self.a + self.text[x + self.inputElement][0]
-        print("stack \t input \t action")
-        print("$ \t" + self.a + "$" + "\t", end='')
+        print("stack \t\t\t input \t\t\t action")
+        print("$" + self.a + "$" + "\t\t\t", end='')
 
         # Main function for shift reduce parser
         self.maincheck()
