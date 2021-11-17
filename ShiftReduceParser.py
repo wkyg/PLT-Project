@@ -85,13 +85,13 @@ class Parser:
         if self.stacklength > 2 and self.stack[self.stacklength - 1] == last:
             if self.stack[self.stacklength - 2] == first:
                 if self.stack[self.stacklength - 3] != "<EXP>":
-                    output.add_row([self.ac + first + last])
+                    output.add_row(["","",self.ac + first + last])
                     print(output)
                     #print(self.ac + first + last)
                     self.popandstuff(2)
         elif self.stacklength > 1 and self.stack[self.stacklength - 1] == last:
             if self.stack[self.stacklength - 2] == first:
-                output.add_row([self.ac + first + last])
+                output.add_row(["","",self.ac + first + last])
                 print(output)
                 #print(self.ac + first + last)
                 self.popandstuff(2)
@@ -161,7 +161,7 @@ class Parser:
                 self.a = self.a + self.text[i + self.inputElement][0]
 
             # Print stack and input
-            output.add_row(["", self.stackString, ""])
+            output.add_row(["", self.stackString + self.a, ""])
             print(output)
             #print("$" + self.stackString + "\t\t\t" + self.a + "$" + "\t\t\t", end='')
 
@@ -171,7 +171,7 @@ class Parser:
         for x in range(len(self.text) - self.inputElement):
             self.a = self.a + self.text[x + self.inputElement][0]
         #output = PrettyTable(["stack", "input", "action"])
-        output.add_row(["", self.a, ""])
+        output.add_row([self.a, "", ""])
         print(output)
         #print("$" + self.a + "$" + "\t\t\t", end='')
 
