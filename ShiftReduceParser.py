@@ -58,7 +58,7 @@ class Parser:
         self.stackString = ""
         for i in range(len(self.stack)):
             self.stackString = self.stackString + self.stack[i]
-        print("$" + self.stackString + "\t\t\t" + self.a + "$" + "\t\t\t", end='')
+        print("$" + self.stackString + "\t" + self.a + "$" + "\t", end='')
         # print("\n")
         # print("stack",self.stack)
 
@@ -144,15 +144,15 @@ class Parser:
                 self.a = self.a + self.text[i + self.inputElement][0]
 
             # Print stack and input
-            print("$" + self.stackString + "\t\t\t" + self.a + "$" + "\t\t\t", end='')
+            print("$" + self.stackString + "\t" + self.a + "$" + "\t", end='')
 
             self.checkrules()
 
     def parser(self):
         for x in range(len(self.text) - self.inputElement):
             self.a = self.a + self.text[x + self.inputElement][0]
-        print("stack \t\t\t input \t\t\t action")
-        print("$" + self.a + "$" + "\t\t\t", end='')
+        print("$stack \t input$ \t action")
+        print("$" + self.a + "$" + "\t", end='')
 
         # Main function for shift reduce parser
         self.maincheck()
