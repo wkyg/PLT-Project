@@ -6,10 +6,10 @@ import pprint
 equation = input("User input: ")
 lexer = Lexer(equation)
 tokens = lexer.lexer()
-print("LEXICAL ANALYSIS OUTPUT:")
+print("Lexical Analysis:")
 pprint.pprint(tokens)
 print("\n")
 
-print("SYNTAX ANALYSIS OUTPUT:")
+print("Syntax Analysis:")
 parser = Parser(tokens)
 syntaxAnalysis = parser.parser()
