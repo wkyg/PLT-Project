@@ -1,5 +1,5 @@
-from LexicalAnalyzer import Lexer
-from ShiftReduceParser import Parser
+from LA import Lexer
+from SA import Parser
 import pprint
 
 
