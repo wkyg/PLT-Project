@@ -20,10 +20,10 @@ class Parser:
         self.text = text
         self.stack = []
         self.a = ""
-        self.action = "SHIFT"
+        self.action = "MOV"
         self.stackString = ""
         self.inputElement = 0
-        self.ac = "REDUCE TO EXP -> "
+        self.ac = "VALIDATE -> "
         self.stacklength = len(self.stack)
 
     def popandstuff(self, x):
